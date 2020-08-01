@@ -1,0 +1,192 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class="flashes">
+        {% for message in messages %}
+            <div class="alert alert-success" role="alert">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+{% endwith %}
+
+<div class="card" style="width: 90%; margin: 0 auto; float: none; margin-top: 20px; padding: 20px;">
+    <h3>Disponibilidad</h3>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        {{ form.cedula.label }} {{ form.cedula(class="form-control", id="ced_select") }}<br>
+        <div class="card-body">
+            <div style="text-align: center;">
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Hora</th>
+                            <th scope="col">Lunes</th>
+                            <th scope="col">Martes</th>
+                            <th scope="col">Miércoles</th>
+                            <th scope="col">Jueves</th>
+                            <th scope="col">Viernes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">7:55-8:45</th>
+                            <td>
+                                {{ form.l1 }}
+                            </td>
+                            <td>
+                                {{ form.x1 }}
+                            </td>
+                            <td>
+                                {{ form.m1 }}
+                            </td>
+                            <td>
+                                {{ form.j1 }}
+                            </td>
+                            <td>
+                                {{ form.v1 }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">8:50-9:40</th>
+                            <td>
+                                {{ form.l2 }}
+                            </td>
+                            <td>
+                                {{ form.x2 }}
+                            </td>
+                            <td>
+                                {{ form.m2 }}
+                            </td>
+                            <td>
+                                {{ form.j2 }}
+                            </td>
+                            <td>
+                                {{ form.v2 }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">9:45-10:35</th>
+                            <td>
+                                {{ form.l3 }}
+                            </td>
+                            <td>
+                                {{ form.x3 }}
+                            </td>
+                            <td>
+                                {{ form.m3 }}
+                            </td>
+                            <td>
+                                {{ form.j3 }}
+                            </td>
+                            <td>
+                                {{ form.v3 }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">10:40-11:30</th>
+                            <td>
+                                {{ form.l4 }}
+                            </td>
+                            <td>
+                                {{ form.x4 }}
+                            </td>
+                            <td>
+                                {{ form.m4 }}
+                            </td>
+                            <td>
+                                {{ form.j4 }}
+                            </td>
+                            <td>
+                                {{ form.v4 }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">12:30-1:20</th>
+                            <td>
+                                {{ form.l5 }}
+                            </td>
+                            <td>
+                                {{ form.x5 }}
+                            </td>
+                            <td>
+                                {{ form.m5 }}
+                            </td>
+                            <td>
+                                {{ form.j5 }}
+                            </td>
+                            <td>
+                                {{ form.v5 }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">1:25-2:15</th>
+                            <td>
+                                {{ form.l6 }}
+                            </td>
+                            <td>
+                                {{ form.x6 }}
+                            </td>
+                            <td>
+                                {{ form.m6 }}
+                            </td>
+                            <td>
+                                {{ form.j6 }}
+                            </td>
+                            <td>
+                                {{ form.v6 }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2:20-3:10</th>
+                            <td>
+                                {{ form.l7 }}
+                            </td>
+                            <td>
+                                {{ form.x7 }}
+                            </td>
+                            <td>
+                                {{ form.m7 }}
+                            </td>
+                            <td>
+                                {{ form.j7 }}
+                            </td>
+                            <td>
+                                {{ form.v7 }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3:15-4:05</th>
+                            <td>
+                                {{ form.l8 }}
+                            </td>
+                            <td>
+                                {{ form.x8 }}
+                            </td>
+                            <td>
+                                {{ form.m8 }}
+                            </td>
+                            <td>
+                                {{ form.j8 }}
+                            </td>
+                            <td>
+                                {{ form.v8 }}
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            {{ form.submit(class="btn btn-primary dropdown-toggle") }}
+    </form>
+</div>
+
+
+{% endblock %}

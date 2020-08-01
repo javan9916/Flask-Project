@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <div class="flashes">
+        {% for category, message in messages %}
+            {% if category == 'error' %}
+            <div class="alert alert-danger" role="alert">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {% elif category == 'success' %}
+            <div class="alert alert-success" role="alert">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    {% endif %}
+{% endwith %}
+
+<div class="card" style="width: 90%; margin: 0 auto; float: none; margin-top: 20px;">
+    <div class="card-body">
+        <h3>Eliminar</h3>
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            {{ form.cedula.label }} {{ form.cedula(class="form-control", id="profe_select") }}<br>
+            {{ form.curso.label }} {{ form.curso(class="form-control", id="curso_select") }}<br>
+            {{ form.submit(class="btn btn-primary dropdown-toggle") }}
+        </form>
+
+        <!--<script>
+            let profe_select = document.getElementById('profe_select');
+            let curso_select = document.getElementById('curso_select');
+        
+            profe_select.onchange = function() {
+                profe = profe_select.value;
+                
+                fetch('/profesores/'+profe).then(function(response) {
+                    response.json().then(function(data) {
+                        let optionHTML = '';
+
+                        for (let curso of data.cursos) {
+                            optionHTML += '<option value="'+curso.id+'">'+curso.nombre+'</option>';
+                        }
+
+                        curso_select.innerHTML = optionHTML;
+                    });
+                });
+            }
+        </script>-->
+    </div>
+</div>
+
+{% endblock %}

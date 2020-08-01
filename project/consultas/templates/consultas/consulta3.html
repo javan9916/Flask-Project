@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<div class="flashes">
+    {% for message in messages %}
+    <div class="alert alert-success" role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+{% endwith %}
+
+<div class="card" style="width: 90%; margin: 0 auto; float: none; margin-top: 20px;">
+    <div class="card-body">
+        <h3>Consulta 3</h3>
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            {{ form.semestre.label }} {{ form.semestre(class="form-control") }}<br>
+            {{ form.todos.label }} {{ form.todos }} <br>
+            {{ form.submit(class="btn btn-primary dropdown-toggle") }}
+        </form>
+
+        {% if horarios != [] %}
+        <h3>Resultados</h3>
+        {% for horario in horarios %}
+        <div class="item">
+            <div style="text-align: center;">
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Profesor</th>
+                            <th scope="col">Curso</th>
+                            <th scope="col">Aula</th>
+                            <th scope="col">Día</th>
+                            <th scope="col">Inicio</th>
+                            <th scope="col">Finalización</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for result in horario %}
+                        <tr>
+                            <td>{{ result[1] }}</td>
+                            <td>{{ result[0] }}</td>
+                            <td>{{ result[2] }}</td>
+                            <td>{{ result[3] }}</td>
+                            <td>{{ result[4] }}</td>
+                            <td>{{ result[6] }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="carousel-caption"></div>
+        </div>
+        <hr style="border-top: 1px solid #bbb;">
+        {% endfor %}
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

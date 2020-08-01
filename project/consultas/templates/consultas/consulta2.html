@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+<div class="flashes">
+    {% for category, message in messages %}
+    {% if category == 'error' %}
+    <div class="alert alert-danger" role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% elif category == 'success' %}
+    <div class="alert alert-success" role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endif %}
+    {% endfor %}
+</div>
+{% endif %}
+{% endwith %}
+
+<div class="card" style="width: 90%; margin: 0 auto; margin-top: 20px;">
+    <div class="card-body">
+        <h3>Consulta 2</h3>
+        <div class="container">
+            <div class="row">
+                <div class="col-2">
+                    <form method="POST">
+                        {{ form.hidden_tag() }}
+                        <fieldset class="form-group">
+                            <h3>Cursos</h3>
+                            {% if form.cursos.errors %}
+                            <div class="invalid-feedback">
+                                {% for error in form.cursos.errors %}
+                                <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                            {% for choice in form.cursos %}
+                            <div class="form-check">
+                                {{ choice(class="form-check-input") }}
+                                {{ choice.label(class="form-check-label") }}
+                            </div>
+                            {% endfor %}
+                        </fieldset>
+                        <div class="form-group">
+                            {{ form.submit(class="btn btn-primary dropdown-toggle") }}
+                        </div>
+                    </form>
+                </div>
+                <div class="col-10" style="width: 100%;">
+                    {% if horarios != [] %}
+                    <h3>Resultados</h3>
+                    {% for horario in horarios %}
+                    <div class="item">
+                        <div style="text-align: center;">
+                            <table class="table">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col">Curso</th>
+                                        <th scope="col">Día</th>
+                                        <th scope="col">Inicio</th>
+                                        <th scope="col">Finalización</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for result in horario %}
+                                    <tr>
+                                        <td>{{ result[0] }}</td>
+                                        <td>{{ result[2] }}</td>
+                                        <td>{{ result[3] }}</td>
+                                        <td>{{ result[5] }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="carousel-caption"></div>
+                    </div>
+                    <hr style="border-top: 1px solid #bbb;">
+                    {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

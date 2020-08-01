@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class="flashes">
+        {% for message in messages %}
+            <div class="alert alert-success" role="alert">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+{% endwith %}
+
+<div class="card" style="width: 90%; margin: 0 auto; float: none; margin-top: 20px;">
+    <div class="card-body">
+        <h3>Eliminar</h3>
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            {{ form.curso.label }} {{ form.curso(class="form-control") }}<br>
+            {{ form.submit(class="btn btn-primary dropdown-toggle") }}
+        </form>
+    </div>
+</div>
+
+{% endblock %}

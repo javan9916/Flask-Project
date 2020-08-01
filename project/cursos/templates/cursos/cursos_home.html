@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4">CRUD de Cursos</h1>
+      <ul>
+        {% for c in cursos  %}
+        <li>{{ c }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+
+{% endblock %}

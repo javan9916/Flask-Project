@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <div class="flashes">
+        {% for category, message in messages %}
+            {% if category == 'error' %}
+            <div class="alert alert-danger" role="alert">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {% elif category == 'success' %}
+            <div class="alert alert-success" role="alert">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    {% endif %}
+{% endwith %}
+
+
+<div class="card" style="width: 90%; margin: 0 auto; float: none; margin-top: 20px;">
+    <div class="card-body">
+        <h3>Actualizar</h3>
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            {{ form.aula.label }} {{ form.aula(class="form-control") }}<br>
+            {{ form.nombre.label }} {{ form.nombre(class="form-control") }}<br>
+            {{ form.capacidad.label }} {{ form.capacidad(class="form-control") }}<br>
+            {{ form.tipo.label }} {{ form.tipo(class="form-control") }}<br>
+            {{ form.submit(class="btn btn-primary dropdown-toggle") }}
+        </form>
+    </div>
+</div>
+
+{% endblock %}

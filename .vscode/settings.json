@@ -1,0 +1,7 @@
+{
+    "python.pythonPath": "C:\\Users\\Javier\\AppData\\Local\\Programs\\Python\\Python38\\python.exe",
+    "python.linting.pylintArgs": [
+        "--load-plugins",
+        "pylint-flask"
+    ]
+}

@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<div class="flashes">
+    {% for message in messages %}
+    <div class="alert alert-success" role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+{% endwith %}
+
+<div class="card" style="width: 90%; margin: 0 auto; float: none; margin-top: 20px;">
+    <div class="card-body">
+        <h3>Consulta 1</h3>
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            {{ form.profesor.label }} {{ form.profesor(class="form-control") }}<br>
+            {{ form.todos.label }} {{ form.todos }} <br>
+            {{ form.submit(class="btn btn-primary dropdown-toggle") }}
+        </form>
+
+        <br>
+        {% if resultados != [] %}
+        <h3>Resultados</h3>
+        <div style="text-align: center;">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Curso</th>
+                        <th scope="col">Profesor</th>
+                        <th scope="col">Día</th>
+                        <th scope="col">Inicio</th>
+                        <th scope="col">Finalización</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for r in resultados %}
+                    <tr>
+                        <td>{{ r[1] }}</td>
+                        <td>{{ r[0] }}</td>
+                        <td>{{ r[2] }}</td>
+                        <td>{{ r[3] }}</td>
+                        <td>{{ r[4] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}
